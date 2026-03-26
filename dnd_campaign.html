@@ -50,7 +50,7 @@
   nav a {
     font-family: 'Cinzel', serif; font-size: 0.68rem;
     letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--ash); text-decoration: none; transition: color 0.3s; position: relative;
+    color: rgba(216,204,180,0.72); text-decoration: none; transition: color 0.3s; position: relative;
   }
   nav a::after {
     content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
@@ -86,6 +86,7 @@
     width: 150px; height: 1px;
     background: linear-gradient(to right, transparent, var(--purple), transparent);
     margin: 1.2rem auto; position: relative;
+    animation: divider-breathe 5s ease-in-out infinite;
   }
   .divider::before {
     content: '✦'; position: absolute; top: 50%; left: 50%;
@@ -118,6 +119,12 @@
   @keyframes pulse-down { 0%,100% { transform: scaleY(1); opacity: 0.45; } 50% { transform: scaleY(1.3); opacity: 1; } }
   @keyframes fade-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes title-in { from { opacity: 0; transform: translateY(30px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes divider-breathe { 0%,100% { width:150px; opacity:0.7; } 50% { width:215px; opacity:1; } }
+  @keyframes glyph-pulse { 0%,100% { opacity:0.65; text-shadow:none; } 50% { opacity:1; text-shadow:0 0 18px rgba(123,79,166,0.75); } }
+  @keyframes icon-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
+  @keyframes quote-glow { 0%,100% { border-left-color:var(--purple-dim); box-shadow:none; } 50% { border-left-color:rgba(123,79,166,0.55); box-shadow:-5px 0 18px rgba(123,79,166,0.1); } }
+  @keyframes shimmer-slide { from { left:-100%; } to { left:160%; } }
+  @keyframes title-flicker { 0%,92%,96%,100% { opacity:1; } 93%,95% { opacity:0.35; } 94% { opacity:0.9; } }
 
   /* SECTIONS */
   section { padding: 6rem 2rem; position: relative; }
@@ -137,6 +144,7 @@
   .lore-border {
     border-left: 2px solid var(--purple-dim); padding-left: 1.5rem; margin: 2rem 0;
     font-style: italic; color: var(--bone); font-size: 0.98rem; line-height: 1.95;
+    animation: quote-glow 4s ease-in-out infinite;
   }
 
   /* CHILDREN */
@@ -146,14 +154,20 @@
     border: 1px solid rgba(123,79,166,0.1);
     background: linear-gradient(160deg, rgba(13,6,22,0.97), rgba(6,4,11,0.99));
     padding: 1.8rem 1.5rem 1.5rem; position: relative; cursor: pointer;
-    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; overflow: hidden;
+    transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s; overflow: hidden;
   }
+  .child-card::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(123,79,166,0.05) 50%, transparent);
+    pointer-events: none;
+  }
+  .child-card:hover::before { animation: shimmer-slide 0.65s ease forwards; }
   .child-card:hover {
-    border-color: var(--card-accent, rgba(123,79,166,0.4));
-    box-shadow: 0 0 35px var(--card-shadow, rgba(123,79,166,0.06));
-    transform: translateY(-3px);
+    border-color: var(--card-accent, rgba(123,79,166,0.5));
+    box-shadow: 0 0 45px var(--card-shadow, rgba(123,79,166,0.12)), 0 8px 28px rgba(0,0,0,0.45);
+    transform: translateY(-4px);
   }
-  .child-icon { font-size: 2rem; display: block; margin-bottom: 1rem; }
+  .child-icon { font-size: 2rem; display: block; margin-bottom: 1rem; animation: icon-float 4s ease-in-out infinite; }
   .child-name { font-family: 'Cinzel', serif; font-size: 0.93rem; color: var(--bone); margin-bottom: 0.2rem; letter-spacing: 0.05em; }
   .child-theme { font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--card-accent, var(--purple-dim)); margin-bottom: 0.85rem; display: block; }
   .child-tagline { font-style: italic; font-size: 0.83rem; color: var(--ash); line-height: 1.6; }
@@ -215,7 +229,7 @@
 
   /* FOOTER */
   footer { border-top: 1px solid rgba(123,79,166,0.08); padding: 2.5rem 2rem; text-align: center; }
-  footer .footer-title { font-family: 'Cinzel Decorative', serif; font-size: 0.75rem; color: var(--purple-dim); letter-spacing: 0.15em; margin-bottom: 0.5rem; }
+  footer .footer-title { font-family: 'Cinzel Decorative', serif; font-size: 0.75rem; color: var(--purple-dim); letter-spacing: 0.15em; margin-bottom: 0.5rem; animation: title-flicker 12s ease-in-out infinite; }
   footer p { font-size: 0.75rem; color: rgba(138,122,102,0.3); font-style: italic; }
 
   /* PRIMER */
@@ -232,8 +246,16 @@
   .primer-block {
     border: 1px solid rgba(123,79,166,0.1);
     background: linear-gradient(160deg, rgba(13,6,22,0.9), rgba(6,4,11,0.97));
-    padding: 1.6rem 1.5rem;
+    padding: 1.6rem 1.5rem; position: relative; overflow: hidden;
+    transition: border-color 0.4s, box-shadow 0.4s;
   }
+  .primer-block::after {
+    content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(184,148,58,0.04) 50%, transparent);
+    pointer-events: none;
+  }
+  .primer-block:hover { border-color: rgba(184,148,58,0.18); box-shadow: 0 0 25px rgba(184,148,58,0.04); }
+  .primer-block:hover::after { animation: shimmer-slide 0.7s ease forwards; }
   .primer-block-title {
     font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.25em;
     text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.9rem;
@@ -255,7 +277,7 @@
   /* RUNE BORDER */
   .rune-border { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; }
   .rune-border .line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(123,79,166,0.22), transparent); }
-  .rune-border .glyph { font-size: 1.1rem; color: var(--purple-dim); opacity: 0.65; }
+  .rune-border .glyph { font-size: 1.1rem; color: var(--purple-dim); opacity: 0.65; animation: glyph-pulse 3s ease-in-out infinite; }
 
   /* REVEAL */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -269,7 +291,89 @@
   .modal-close { position: absolute; top: 1rem; right: 1.2rem; background: none; border: none; color: var(--ash); font-size: 1.2rem; cursor: pointer; font-family: 'Cinzel', serif; transition: color 0.2s; }
   .modal-close:hover { color: var(--purple); }
 
-  @media (max-width: 600px) { nav { gap: 1rem; } .maps-grid, .children-grid { grid-template-columns: 1fr 1fr; } }
+  /* FAQ */
+  #faq { background: var(--deep); }
+  .faq-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .faq-item {
+    border: 1px solid rgba(123,79,166,0.1);
+    background: linear-gradient(160deg, rgba(13,6,22,0.9), rgba(6,4,11,0.97));
+    overflow: hidden; position: relative;
+  }
+  .faq-question {
+    width: 100%; background: none; border: none; text-align: left;
+    padding: 1.3rem 3.5rem 1.3rem 1.6rem;
+    font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.06em;
+    color: var(--bone); cursor: pointer; position: relative;
+    transition: color 0.3s;
+  }
+  .faq-question:hover { color: var(--purple); }
+  .faq-question::after {
+    content: '✦'; position: absolute; right: 1.4rem; top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    font-size: 0.55rem; color: var(--purple-mid);
+    transition: transform 0.4s ease, color 0.3s;
+  }
+  .faq-item.open .faq-question::after { transform: translateY(-50%) rotate(135deg); color: var(--purple); }
+  .faq-answer {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.45s ease, padding 0.3s ease;
+    padding: 0 1.6rem;
+    font-style: italic; color: var(--ash); font-size: 0.88rem; line-height: 1.85;
+  }
+  .faq-item.open .faq-answer { max-height: 300px; padding: 0 1.6rem 1.4rem; }
+  .faq-item.open { border-color: rgba(123,79,166,0.22); }
+
+  /* WANT TO PLAY */
+  #join { background: var(--shadow); }
+  .join-inner {
+    text-align: center; max-width: 560px; margin: 3rem auto 0;
+    display: flex; flex-direction: column; align-items: center; gap: 1.4rem;
+  }
+  .join-inner p { font-style: italic; color: var(--ash); font-size: 0.97rem; line-height: 1.9; }
+  .join-contact {
+    display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center;
+    margin-top: 0.5rem;
+  }
+  .join-btn {
+    font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.28em;
+    text-transform: uppercase; padding: 0.75rem 1.8rem;
+    border: 1px solid rgba(123,79,166,0.35); color: var(--bone);
+    background: rgba(123,79,166,0.06); text-decoration: none;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .join-btn::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(123,79,166,0.1) 50%, transparent);
+  }
+  .join-btn:hover { background: rgba(123,79,166,0.12); border-color: var(--purple); box-shadow: 0 0 20px rgba(123,79,166,0.12); }
+  .join-btn:hover::before { animation: shimmer-slide 0.6s ease forwards; }
+  .join-spots {
+    font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--purple-mid);
+    border: 1px solid rgba(123,79,166,0.15); padding: 0.45rem 1rem;
+  }
+  .join-checklist {
+    text-align: left; width: 100%; max-width: 560px;
+    border: 1px solid rgba(123,79,166,0.12);
+    background: linear-gradient(160deg, rgba(13,6,22,0.9), rgba(6,4,11,0.97));
+    padding: 1.8rem 2.2rem;
+  }
+  .join-checklist-title {
+    font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1rem;
+    padding-bottom: 0.6rem; border-bottom: 1px solid rgba(184,148,58,0.1);
+  }
+  .join-checklist li {
+    list-style: none; font-style: italic; color: var(--ash); font-size: 0.87rem;
+    line-height: 1.8; padding-left: 1.2rem; position: relative;
+  }
+  .join-checklist li::before {
+    content: '✦'; position: absolute; left: 0;
+    font-size: 0.4rem; color: var(--purple-mid); top: 0.45rem;
+  }
+
+  @media (max-width: 600px) { nav { gap: 1rem; } .children-grid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
 <body>
@@ -279,9 +383,9 @@
   <a href="#primer">Primer</a>
   <a href="#lore">Lore</a>
   <a href="#children">The Seven</a>
-  <a href="#party">Party</a>
-  <a href="#recaps">Sessions</a>
-  <a href="#maps">Maps</a>
+  <a href="#dm">The DM</a>
+  <a href="#faq">FAQ</a>
+  <a href="#join">Join</a>
 </nav>
 
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
@@ -347,7 +451,8 @@
 
       <div class="primer-block">
         <div class="primer-block-title">The Format</div>
-        <p>Sessions run approximately <em>[X hours]</em>, <em>[day &amp; frequency]</em>. We use <em>[system — e.g. D&amp;D 5e]</em>. New characters begin at level <em>[X]</em>.</p>
+        <p>We play using <em>D&amp;D 5e 2024 rules</em>. The campaign is <em>100% homebrew</em> — no published adventures, no borrowed worlds. Everything here was built from scratch.</p>
+        <p>This is an <em>open world</em> campaign. There is no fixed path. The story goes where the players take it, and the world will react accordingly. Characters begin at <em>level 3</em>, with sessions scheduled depending on player availability.</p>
         <p>Character creation guidance is provided before your first session. Come with a concept, a flaw, and one thing your character is afraid of losing.</p>
       </div>
     </div>
@@ -370,6 +475,9 @@
       <p>
         At some point — the records disagree on when — Varethos turned his attention to the matter of succession. He had no children. He had never had children. What he did to remedy this is described differently depending on the source: a great working, a forbidden rite, a reaching into the bones of the world itself. Seven children came from it. They were not alike. They were not supposed to be. Each one carried something inside them that the oldest texts refer to only as <em>the shard</em> — a fragment of something ancient, something that predated Varethos, predated the continent, perhaps predated the world as it is currently understood.
       </p>
+      <p>
+        A handful of the oldest texts — the ones that predate even Varethos, written in scripts that resist translation — speak of something else. They do not agree on what to call it. Several do not try. What they describe is consistent: a presence without a shape, pale as the gap between stars, moving through darkness the way a veil moves through still air. It does not speak. It does not need to. It has been here longer than language, longer than gods, longer than the things that gave gods their names. It waits. It is very good at waiting.
+      </p>
       <div class="lore-border">
         "The seven were raised well, by most accounts. They were given purpose and instruction and what appears to have been genuine affection. They served him, and they were good at it. For a time — perhaps a long time — this was enough."
         <br><br>— fragment, <em>The Ashen Codex</em>, provenance unknown
@@ -377,6 +485,10 @@
       <p>
         Then something changed. The records grow thinner here, as though whoever was keeping them became suddenly reluctant. A figure appears in the margins of several independent accounts — described variously as a wanderer, a stranger, a pale thing in a wide-brimmed hat that should not have been able to go where it went. It seems to have spoken to some of the children privately. What it said to them is not recorded. What happened afterward is.
       </p>
+      <div class="lore-border">
+        "It came to me in a dream that was not a dream. It wore a man's shape and a man's smile and a hat pulled low over something I could not look at directly. Behind it — through it — I saw something else. Something pale. Something enormous. Something that had no eyes but was watching all the same."
+        <br><br>— personal account, source withheld, filed under <em>Unverified</em>
+      </div>
       <p>
         Three of the seven turned against their father. Not together, and not all at once — the order matters, though no surviving document agrees on what it was. There was a confrontation. There was, by all accounts, very little resistance from Varethos himself. Whether this was inability or choice, the sources do not say. They say only that it ended, and that the world has been quieter and colder ever since.
       </p>
@@ -387,6 +499,19 @@
       <p>
         This is where the reliable record ends. What follows — the scattering of the remaining four, the ambitions of the three who turned, the slow dimming of something that used to hold the world together — is still in the process of being written. By whom, and how it concludes, remains to be seen.
       </p>
+      <p>
+        What can be said of the world now is this: the borders that held under Varethos have begun to blur. Old agreements are being quietly abandoned. Towns that once sent tribute to a central authority send nothing, because there is no longer anywhere to send it. In the spaces between settlements, in the roads that used to be safe, something has changed. People feel it without being able to name it — a loosening, a wrongness in the air, the sense that something which was always there has been removed and the gap has not yet decided what to become.
+      </p>
+      <p>
+        There are other reports. Smaller ones, easy to dismiss. Travellers who arrived at their destination unable to account for a night on the road. Children describing a pale shape outside their window that looked like a woman made of smoke and distance. Priests of several different faiths independently recording a new phenomenon: prayers that go somewhere, but not where they were aimed. The scholars who still bother to compare notes have begun using a phrase that does not appear in any older text. They are calling it <em>the thinning</em>. None of them have agreed yet on what is thinning, or what might be on the other side.
+      </p>
+      <p>
+        The seven children are out in the world. Some are looking for something. Some are building something. One has not yet decided. And somewhere, wearing a hat and a smile, the figure that started all of this is still walking — still talking to people, still making its quiet offers, still moving toward something that no fragment, no marginal note, no scratched-out testimony has yet managed to describe.
+      </p>
+      <div class="lore-border">
+        "You are not chosen. There is no prophecy. There is only a world coming apart at the seams, and the question of what you intend to do about it."
+        <br><br>— unknown, written inside the front cover of an otherwise empty journal
+      </div>
     </div>
   </div>
 </section>
@@ -405,7 +530,6 @@
           'Seraphel is the eldest, and she carries herself like someone who has already seen how things end. She is calm in the way that the sky is calm — vast, untouchable, and indifferent to what burns below it. She does not waste words, and she does not offer comfort. What she offers is clarity, which most people find worse.',
           'She was the first to sense what lives inside all seven of them. She has not told the others what she suspects. She is not sure they are ready. She is not sure she is, either.',
           ['Clarity','Distant warmth','Ancient sight','The long view','Knows more than she says'])">
-        <div class="child-status status-loyal">Loyal</div>
         <span class="child-icon">⭐</span>
         <div class="child-name">Seraphel</div>
         <span class="child-theme">Stars &amp; Light</span>
@@ -417,7 +541,6 @@
           'Maren is warm in the way that a fireplace is warm — inviting, yes, but step too close and you get burned. She loves deeply and grieves harder, and she has never once learned how to let something go. She is the most openly emotional of the seven, which people mistake for weakness until it is much too late.',
           'The figure in the hat came to her first. She refused it. That refusal cost her in quiet ways she has never fully explained — but she has not wavered. Whatever she feels about what happened to Varethos, she carries it without putting it down.',
           ['Fierce loyalty','Hidden thorns','Love as armor','Unresolved grief','Refused the Skull first'])">
-        <div class="child-status status-loyal">Loyal</div>
         <span class="child-icon">🌹</span>
         <div class="child-name">Maren</div>
         <span class="child-theme">Roses &amp; Thorns</span>
@@ -429,7 +552,6 @@
           'Kael was never quiet. Even as a child he filled every room he entered — loud, restless, furious at things he could not name. He loved Varethos fiercely and openly, the way only someone terrified of being unloved truly can. When the figure showed him visions of a father who had engineered that love — who had built Kael to need him — something snapped like a bone.',
           'He did not become cruel slowly. He became cruel all at once, like a storm that has been building offshore finally making landfall. His rage is genuine. His grief is genuine. He is not pretending. He truly believes he was wronged, and he truly believes the world deserves what he is bringing to it.',
           ['Volcanic rage','Broken devotion','Genuine grief','Unstoppable once moving','Needs to be witnessed'])">
-        <div class="child-status status-corrupted">Corrupted</div>
         <span class="child-icon">⚡</span>
         <div class="child-name">Kael</div>
         <span class="child-theme">Storm &amp; Thunder</span>
@@ -441,7 +563,6 @@
           'Voryn does not talk about the things he has done. He does not talk about much. He was the one Varethos sent when diplomacy had already failed — the last argument, the final word. He has scars on his hands he has never explained and a way of standing in a room that makes people instinctively move out of his path.',
           'He is not a good man. He knows this and does not pretend otherwise. But he is a loyal one, and in a world this broken, that distinction might be all that is left. He mourns Varethos in the only language he knows: work.',
           ['Quiet lethality','Buried guilt','Soldier\'s discipline','Unflinching loyalty','Mourns through action'])">
-        <div class="child-status status-loyal">Loyal</div>
         <span class="child-icon">🗡️</span>
         <div class="child-name">Voryn</div>
         <span class="child-theme">Iron &amp; Scars</span>
@@ -453,7 +574,6 @@
           'Thessaly was always the one who was right. Not cruel about it — just precise, with an accuracy that made other people feel quietly ashamed of themselves. She saw the world in weights and debts and balances, and Varethos trusted her above all others to make the decisions that could not be made lightly.',
           'The figure did not break Thessaly. It only needed to show her the ledger — the true one. What Varethos had taken from the Nameless God without consent. What he had done to the seven of them without asking. Thessaly looked at the numbers and found them unacceptable. She is not driven by rage or grief. She is driven by the cold certainty that someone has to correct this, and she is the only one qualified.',
           ['Absolute certainty','Cold precision','Righteous in her corruption','Methodical','Incapable of doubt'])">
-        <div class="child-status status-corrupted">Corrupted</div>
         <span class="child-icon">⚖️</span>
         <div class="child-name">Thessaly</div>
         <span class="child-theme">Scales &amp; Judgment</span>
@@ -465,7 +585,6 @@
           'Vesh is charming. Genuinely, effortlessly charming — the kind of person who makes you feel, in the moment of speaking with them, that you are the only person in the world worth speaking to. It is a gift. It is also a weapon, and Vesh has always known the difference between the two.',
           'The figure in the hat did not corrupt Vesh so much as give Vesh permission. The ambition was always there. The hunger was always there. What was offered was not a reason to act — it was simply the removal of the last reason not to. Vesh is not angry at Varethos. Vesh is not grieving. Vesh saw an opportunity in the chaos and took it, and has been taking everything since.',
           ['Effortless charm','Pure ambition','No ideology but power','Webs within webs','Genuinely enjoys this'])">
-        <div class="child-status status-corrupted">Corrupted</div>
         <span class="child-icon">🕸️</span>
         <div class="child-name">Vesh</div>
         <span class="child-theme">Spiders &amp; Silk</span>
@@ -477,7 +596,6 @@
           'Nael is the youngest, and the most quietly devastating. They exist in the space between things — between light and dark, between loyal and lost, between the person they were before and the person something is slowly convincing them they could become. They have not chosen yet. Whatever wears the hat is not rushing them.',
           'Nael loved Varethos in a way none of the others quite did — not with awe or need, but with a simple, undefended tenderness that has nowhere to go now that he is gone. That love did not become anger. It became silence. And the silence has been getting louder. Whoever Nael becomes when they finally choose a side will change everything.',
           ['Between worlds','Devastating potential','Unprocessed tenderness','The pivot point','Still deciding'])">
-        <div class="child-status status-unknown">Unknown</div>
         <span class="child-icon">🌑</span>
         <div class="child-name">Nael</div>
         <span class="child-theme">The Eclipse</span>
@@ -488,116 +606,97 @@
   </div>
 </section>
 
-<!-- THE PARTY -->
-<section id="party">
+<!-- THE DM -->
+<section id="dm">
   <div class="section-inner">
-    <div class="rune-border reveal"><div class="line"></div><div class="glyph">⚔</div><div class="line"></div></div>
-    <span class="section-tag reveal">The Adventurers</span>
-    <h2 class="reveal">Those Who Walk Together</h2>
-    <p class="reveal" style="font-style:italic;color:var(--ash);margin-top:0.4rem;font-size:0.9rem;">The party. The people standing between what is and what comes next.</p>
-    <div class="children-grid reveal">
+    <div class="rune-border reveal"><div class="line"></div><div class="glyph">🎲</div><div class="line"></div></div>
+    <span class="section-tag reveal">Behind the Screen</span>
+    <h2 class="reveal">The Dungeon Master</h2>
+    <p class="reveal" style="font-style:italic;color:var(--ash);margin-top:0.4rem;font-size:0.9rem;">The person responsible for all of this.</p>
+    <div class="primer-blocks reveal" style="margin-top:2.5rem;">
+      <div class="primer-block" style="grid-column:1/-1;">
+        <div class="primer-block-title">Hi, I'm Nick</div>
+        <p>I'm a relatively new DM — only a handful of sessions under my belt — but what I lack in experience I make up for in enthusiasm and, apparently, an alarming willingness to write elaborate fantasy lore at midnight. I'm an easy-going, laid-back kind of person, and I'm told I'm funny. <em>(I'm choosing to believe that.)</em></p>
+        <p>I run games from my home in Mġarr. Fair warning: I have a Border Collie who is extremely friendly and will absolutely demand your attention the moment you walk through the door. This is non-negotiable. The puppy tax is mandatory.</p>
+      </div>
+      <div class="primer-block">
+        <div class="primer-block-title">How I Run Games</div>
+        <p>I'm more of a <em>roleplay-first</em> DM. I love character moments, meaningful choices, and stories where the relationships between people matter as much as the monsters. Combat is there — and it has teeth — but it's rarely the point.</p>
+        <p>I believe in <em>consequences</em>. The world reacts to what you do. Decisions stick. That said, this game doesn't have to be relentlessly grim — I want us to have moments that are funny, sad, tense, heartfelt, and genuinely surprising. The darkness is the backdrop, not the destination.</p>
+      </div>
+      <div class="primer-block">
+        <div class="primer-block-title">How to Reach Me</div>
+        <p>Got questions before session one? Want to talk through a character concept? Just add your preferred contact details here — Discord handle, phone, carrier raven — and new players will know how to find you.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- ═══ ADD YOUR PLAYER CHARACTERS BELOW ═══
-           Copy one of these blocks per player. Update:
-             icon      — any emoji that fits the character
-             Name      — character name
-             Class·Race — e.g. "Rogue · Half-Elf"
-             quote     — one defining line or tagline
-           Then link an onclick like the Seven above if you want a full modal.
-      ══════════════════════════════════════════ -->
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="rune-border reveal"><div class="line"></div><div class="glyph">?</div><div class="line"></div></div>
+    <span class="section-tag reveal">Questions &amp; Answers</span>
+    <h2 class="reveal">Before You Ask</h2>
+    <p class="reveal" style="font-style:italic;color:var(--ash);margin-top:0.4rem;font-size:0.9rem;">The things most new players wonder about. Click to expand.</p>
+    <div class="faq-list reveal">
 
-      <div class="child-card" style="--card-accent:rgba(184,148,58,0.35);--card-shadow:rgba(184,148,58,0.04);">
-        <span class="child-icon">⚔️</span>
-        <div class="child-name">Your Character</div>
-        <span class="child-theme">Class · Race</span>
-        <div class="child-tagline"><em>A defining quote, or one line about who this person is.</em></div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Do I need to own any D&amp;D books?</button>
+        <div class="faq-answer">No. Everything you need will be provided or pointed out to you before your first session. A free D&amp;D Beyond account is handy for your character sheet, but it's not required. Don't spend money on anything before we've spoken.</div>
       </div>
 
-      <div class="child-card" style="--card-accent:rgba(85,125,205,0.35);--card-shadow:rgba(85,125,205,0.04);">
-        <span class="child-icon">🔮</span>
-        <div class="child-name">Your Character</div>
-        <span class="child-theme">Class · Race</span>
-        <div class="child-tagline"><em>A defining quote, or one line about who this person is.</em></div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">I've never played before. Is that OK?</button>
+        <div class="faq-answer">Completely fine. Genuinely. New players are welcome and we'll walk you through everything you need at session zero. If anything, coming in without habits is sometimes easier — you won't have to unlearn anything. The only thing you need to bring is curiosity.</div>
       </div>
 
-      <div class="child-card" style="--card-accent:rgba(95,175,95,0.32);--card-shadow:rgba(95,175,95,0.04);">
-        <span class="child-icon">🌿</span>
-        <div class="child-name">Your Character</div>
-        <span class="child-theme">Class · Race</span>
-        <div class="child-tagline"><em>A defining quote, or one line about who this person is.</em></div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">What should I bring to a session?</button>
+        <div class="faq-answer">Dice if you have them (sets can be borrowed if not), your character sheet, something to drink, and a willingness to do something a bit embarrassing in the name of roleplay. Snacks are always appreciated but never required.</div>
       </div>
 
-      <div class="child-card" style="--card-accent:rgba(175,80,80,0.35);--card-shadow:rgba(175,80,80,0.04);">
-        <span class="child-icon">🔥</span>
-        <div class="child-name">Your Character</div>
-        <span class="child-theme">Class · Race</span>
-        <div class="child-tagline"><em>A defining quote, or one line about who this person is.</em></div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Can I play any race or class?</button>
+        <div class="faq-answer">Most options from the 2024 Player's Handbook are available. Some more unusual choices might need a quick chat first to make sure they fit the world — but the answer is almost always yes. Come to me with a concept and we'll make it work.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">How serious is the roleplay?</button>
+        <div class="faq-answer">As serious as you want it to be. I lean into character moments and story, but I'm not looking for trained actors. If you want to speak in an accent, great. If you'd rather just describe what your character does, also great. The table is a safe place to try things and look a bit silly.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">Is there anything I should know about the house?</button>
+        <div class="faq-answer">Games are hosted at my home in Mġarr. One important heads-up: I have a Border Collie who is very friendly and will greet you at the door with considerable enthusiasm. If you have a dog allergy or are nervous around dogs, let me know in advance and we'll sort something out.</div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- RECAPS -->
-<section id="recaps">
+<!-- JOIN -->
+<section id="join">
   <div class="section-inner">
-    <div class="rune-border reveal"><div class="line"></div><div class="glyph">🕯</div><div class="line"></div></div>
-    <span class="section-tag reveal">The Chronicles</span>
-    <h2 class="reveal">Session Recaps</h2>
-    <div class="session-list reveal">
-      <div class="session-card" onclick="openModal('Session Zero — Before the Story Begins', 'Add your session zero recap here. What happened when your party first came together? What did they learn, who did they meet, and what has already gone wrong?')">
-        <div class="session-badge">Recap</div>
-        <div class="session-num">Session 00 · The Beginning</div>
-        <div class="session-title">Before the Story Begins</div>
-        <div class="session-excerpt">The party gathers. Something is already wrong. It started before any of you arrived.</div>
+    <div class="rune-border reveal"><div class="line"></div><div class="glyph">✉</div><div class="line"></div></div>
+    <span class="section-tag reveal">Get Involved</span>
+    <h2 class="reveal">Want to Play?</h2>
+    <div class="join-inner reveal">
+      <p>The table is looking for <em>[5] players</em>. If you're curious, interested, or just want to ask a question before committing to anything — feel free to stalk me on Discord or Facebook. No experience necessary. No judgement. Just a seat, some dice, and a story we're building together.</p>
+      <div class="join-spots">[5] seats remaining</div>
+      <div class="join-checklist">
+        <div class="join-checklist-title">When you reach out, let me know&hellip;</div>
+        <ul>
+          <li>Your name (or what you want to be called)</li>
+          <li>Whether you've played D&amp;D before — and if so, roughly how much</li>
+          <li>Any character concept you're already thinking about, even if it's vague</li>
+          <li>Any content you'd prefer to avoid at the table</li>
+          <li>Any questions you have before committing</li>
+        </ul>
       </div>
-      <div class="session-card" onclick="openModal('Coming Soon', 'Your next session recap will appear here. The chronicle grows with each tale told around the table.')">
-        <div class="session-badge" style="border-color:var(--purple-dim);color:var(--purple-mid)">Upcoming</div>
-        <div class="session-num">Session 01 · ???</div>
-        <div class="session-title">Untitled</div>
-        <div class="session-excerpt">The story continues...</div>
-      </div>
-      <div class="session-card" onclick="openModal('Coming Soon', 'Your next session recap will appear here. The chronicle grows with each tale told around the table.')">
-        <div class="session-badge" style="border-color:var(--purple-dim);color:var(--purple-mid)">Upcoming</div>
-        <div class="session-num">Session 02 · ???</div>
-        <div class="session-title">Untitled</div>
-        <div class="session-excerpt">The story continues...</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MAPS -->
-<section id="maps">
-  <div class="section-inner">
-    <div class="rune-border reveal"><div class="line"></div><div class="glyph">🗺</div><div class="line"></div></div>
-    <span class="section-tag reveal">The Known World</span>
-    <h2 class="reveal">Maps &amp; Locations</h2>
-    <div class="maps-grid reveal">
-      <div class="map-card">
-        <div class="map-placeholder">
-          <div class="map-icon">🏚</div>
-          <div class="map-label">The Fractured Capital<br>Where It Ended</div>
-        </div>
-        <div class="map-hover-text">View Location</div>
-      </div>
-      <div class="map-card">
-        <div class="map-placeholder">
-          <div class="map-icon">🗝</div>
-          <div class="map-label">The Vault of Shards<br>Beneath the Old Keep</div>
-        </div>
-        <div class="map-hover-text">View Location</div>
-      </div>
-      <div class="map-card">
-        <div class="map-placeholder">
-          <div class="map-icon">🌑</div>
-          <div class="map-label">The Pale Roads<br>Where He Walks</div>
-        </div>
-        <div class="map-hover-text">View Location</div>
-      </div>
-      <div class="map-upload-card" onclick="alert('To add your own maps, replace the placeholder cards with img tags pointing to your map images!')">
-        <span>＋</span>
-        <span class="upload-label">Add a Map</span>
+      <div class="join-contact">
+        <a class="join-btn" href="https://discord.com/users/toonknight" target="_blank" rel="noopener">Discord &mdash; toonknight</a>
+        <a class="join-btn" href="https://www.facebook.com/nicky.farrugia.1" target="_blank" rel="noopener">Facebook &mdash; Nicky Farrugia</a>
       </div>
     </div>
   </div>
@@ -643,14 +742,13 @@
 
   // Child modal
   function openChildModal(icon, name, theme, status, desc1, desc2, traits) {
-    const statusColor = status === 'Loyal' ? 'var(--gold-dim)' : status === 'Corrupted' ? 'var(--blood)' : 'var(--purple-mid)';
     const pills = traits.map(t => `<span class="trait-pill">${t}</span>`).join('');
     document.getElementById('modal-content').innerHTML = `
       <div class="child-modal-header">
         <div class="child-modal-icon">${icon}</div>
         <div class="child-modal-meta">
           <h3>${name}</h3>
-          <span class="theme-tag">${theme} &nbsp;·&nbsp; <span style="color:${statusColor}">${status}</span></span>
+          <span class="theme-tag">${theme}</span>
         </div>
       </div>
       <div class="child-modal-body">
@@ -664,6 +762,14 @@
   function closeModal(e) {
     if (e.target === document.getElementById('modal'))
       document.getElementById('modal').classList.remove('open');
+  }
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
   }
 </script>
 </body>
