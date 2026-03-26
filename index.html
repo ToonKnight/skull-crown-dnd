@@ -42,7 +42,7 @@
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: center; gap: 2.5rem;
+    display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2rem;
     padding: 1.2rem 2rem;
     background: linear-gradient(to bottom, rgba(6,4,11,0.99), transparent);
     border-bottom: 1px solid rgba(123,79,166,0.1);
@@ -59,6 +59,49 @@
   }
   nav a:hover { color: var(--purple); }
   nav a:hover::after { transform: scaleX(1); }
+
+  /* HAMBURGER */
+  .nav-toggle {
+    display: none; background: none; border: 1px solid rgba(123,79,166,0.25); padding: 0.45rem 0.7rem;
+    cursor: pointer; flex-direction: column; gap: 5px; position: absolute; right: 1.4rem; top: 50%; transform: translateY(-50%);
+  }
+  .nav-toggle span {
+    display: block; width: 22px; height: 1px; background: rgba(216,204,180,0.72);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .nav-brand {
+    display: none; font-family: 'Cinzel Decorative', serif; font-size: 0.62rem;
+    letter-spacing: 0.18em; color: var(--purple-mid); text-transform: uppercase;
+  }
+
+  @media (max-width: 780px) {
+    nav {
+      flex-direction: column; align-items: flex-start;
+      padding: 0; background: rgba(6,4,11,0.99);
+      border-bottom: 1px solid rgba(123,79,166,0.1);
+    }
+    .nav-header {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 1.4rem; position: relative;
+    }
+    .nav-brand { display: block; }
+    .nav-toggle { display: flex; position: static; transform: none; }
+    .nav-links {
+      display: none; flex-direction: column; width: 100%;
+      border-top: 1px solid rgba(123,79,166,0.08);
+      padding: 0.6rem 0 1rem;
+    }
+    .nav-links.open { display: flex; }
+    nav a {
+      padding: 0.65rem 1.8rem; font-size: 0.7rem;
+    }
+    nav a::after { display: none; }
+    nav a:hover { background: rgba(123,79,166,0.06); color: var(--purple); }
+  }
 
   /* HERO */
   #hero {
@@ -421,14 +464,22 @@
 <body>
 
 <nav>
-  <a href="#hero">Home</a>
-  <a href="#primer">Primer</a>
-  <a href="#lore">Lore</a>
-  <a href="#children">The Seven</a>
-  <a href="#houserules">House Rules</a>
-  <a href="#dm">The DM</a>
-  <a href="#faq">FAQ</a>
-  <a href="#join">Join</a>
+  <div class="nav-header">
+    <span class="nav-brand">The Skull Crown</span>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-links" id="nav-links">
+    <a href="#hero" onclick="closeNav()">Home</a>
+    <a href="#primer" onclick="closeNav()">Primer</a>
+    <a href="#lore" onclick="closeNav()">Lore</a>
+    <a href="#children" onclick="closeNav()">The Seven</a>
+    <a href="#houserules" onclick="closeNav()">House Rules</a>
+    <a href="#dm" onclick="closeNav()">The DM</a>
+    <a href="#faq" onclick="closeNav()">FAQ</a>
+    <a href="#join" onclick="closeNav()">Join</a>
+  </div>
 </nav>
 
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
@@ -856,6 +907,15 @@
   function closeModal(e) {
     if (e.target === document.getElementById('modal'))
       document.getElementById('modal').classList.remove('open');
+  }
+
+  function toggleNav() {
+    document.getElementById('nav-toggle').classList.toggle('open');
+    document.getElementById('nav-links').classList.toggle('open');
+  }
+  function closeNav() {
+    document.getElementById('nav-toggle').classList.remove('open');
+    document.getElementById('nav-links').classList.remove('open');
   }
 
   // Dice easter egg — click the h1 title
