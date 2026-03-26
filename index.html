@@ -373,6 +373,48 @@
     font-size: 0.4rem; color: var(--purple-mid); top: 0.45rem;
   }
 
+  /* HOUSE RULES */
+  #houserules { background: var(--deep); }
+  .rules-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .rule-card {
+    border: 1px solid rgba(123,79,166,0.1);
+    background: linear-gradient(160deg, rgba(13,6,22,0.9), rgba(6,4,11,0.97));
+    padding: 1.4rem 1.8rem; display: flex; gap: 1.2rem; align-items: flex-start;
+    transition: border-color 0.3s;
+  }
+  .rule-card:hover { border-color: rgba(123,79,166,0.25); }
+  .rule-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .rule-body {}
+  .rule-title {
+    font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.12em;
+    color: var(--bone); margin-bottom: 0.5rem;
+  }
+  .rule-desc { font-style: italic; color: var(--ash); font-size: 0.87rem; line-height: 1.85; }
+  .rule-desc em { color: var(--bone); font-style: normal; }
+
+  /* DICE ROLLER */
+  #dice-roller {
+    position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 300;
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    pointer-events: none;
+  }
+  #dice-result {
+    font-family: 'Cinzel Decorative', serif; font-size: 2.2rem; font-weight: 900;
+    color: var(--bone); text-shadow: 0 0 30px rgba(123,79,166,0.8), 0 0 8px rgba(107,18,18,0.6);
+    opacity: 0; transform: translateY(10px) scale(0.8);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none; line-height: 1;
+  }
+  #dice-result.show { opacity: 1; transform: translateY(0) scale(1); }
+  #dice-label {
+    font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--purple-mid); opacity: 0;
+    transition: opacity 0.35s ease 0.1s;
+    pointer-events: none;
+  }
+  #dice-label.show { opacity: 1; }
+  h1 { cursor: pointer; }
+
   @media (max-width: 600px) { nav { gap: 1rem; } .children-grid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
@@ -383,6 +425,7 @@
   <a href="#primer">Primer</a>
   <a href="#lore">Lore</a>
   <a href="#children">The Seven</a>
+  <a href="#houserules">House Rules</a>
   <a href="#dm">The DM</a>
   <a href="#faq">FAQ</a>
   <a href="#join">Join</a>
@@ -632,6 +675,51 @@
   </div>
 </section>
 
+<!-- HOUSE RULES -->
+<section id="houserules">
+  <div class="section-inner">
+    <div class="rune-border reveal"><div class="line"></div><div class="glyph">⚖</div><div class="line"></div></div>
+    <span class="section-tag reveal">How We Play</span>
+    <h2 class="reveal">House Rules</h2>
+    <p class="reveal" style="font-style:italic;color:var(--ash);margin-top:0.4rem;font-size:0.9rem;">A few things that run differently at this table. Read these before your first session.</p>
+    <div class="rules-list reveal">
+
+      <div class="rule-card">
+        <div class="rule-icon">💀</div>
+        <div class="rule-body">
+          <div class="rule-title">Death Saves Are Secret</div>
+          <div class="rule-desc">To avoid metagaming, death saving throws are rolled secretly by the DM. When your character goes down, the table doesn't know the odds — only the outcome.</div>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-icon">⏱️</div>
+        <div class="rule-body">
+          <div class="rule-title">Be Ready on Your Turn</div>
+          <div class="rule-desc">A round lasts <em>6 seconds</em>. There's no time for lengthy in-character strategy meetings. Brief utterances only (PHB p. 189). If you haven't acted within roughly <em>20 seconds</em>, your character Dodges and the turn passes. Know your spells and features before we sit down.</div>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-icon">❤️</div>
+        <div class="rule-body">
+          <div class="rule-title">Fixed Hit Points on Level Up</div>
+          <div class="rule-desc">You don't roll for HP when you level. In D&amp;D Beyond under Character Preferences, set <em>Hit Point Type: Fixed</em>. If you want to roll, set it to <em>Manual</em> and roll in front of the DM. Roll a 1, it becomes a 2.</div>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-icon">🎒</div>
+        <div class="rule-body">
+          <div class="rule-title">The Bandolier</div>
+          <div class="rule-desc">Each player has a bandolier with <em>3 item slots</em>. Using an item as a <em>full action</em> grants the full effect. Using one as a <em>bonus action</em> requires a roll — the outcome may vary. Choose carefully what you keep within reach.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq">
   <div class="section-inner">
@@ -702,6 +790,12 @@
   </div>
 </section>
 
+<!-- DICE EASTER EGG -->
+<div id="dice-roller">
+  <div id="dice-result"></div>
+  <div id="dice-label">d20 — fate decides</div>
+</div>
+
 <footer>
   <div class="footer-title">The Skull Crown</div>
   <p>Seven children. One god. No mercy.</p>
@@ -763,6 +857,36 @@
     if (e.target === document.getElementById('modal'))
       document.getElementById('modal').classList.remove('open');
   }
+
+  // Dice easter egg — click the h1 title
+  const diceMessages = [
+    'NATURAL 20', 'CRITICAL HIT', 'NATURAL 1', 'CRITICAL FAIL',
+    '18 — SOLID', '15 — DECENT', '7 — ROUGH', '13 — CLOSE',
+    '4 — UNFORTUNATE', '11 — MIDDLING', '20 — THE GODS SMILE', '1 — THE GODS DO NOT'
+  ];
+  const diceEl = document.getElementById('dice-result');
+  const labelEl = document.getElementById('dice-label');
+  let diceTimeout;
+  document.querySelector('h1').addEventListener('click', () => {
+    const roll = Math.floor(Math.random() * 20) + 1;
+    const isCrit = roll === 20;
+    const isFail = roll === 1;
+    diceEl.textContent = roll;
+    diceEl.style.color = isCrit ? '#b8943a' : isFail ? '#6b1212' : 'var(--bone)';
+    diceEl.style.textShadow = isCrit
+      ? '0 0 40px rgba(184,148,58,0.9), 0 0 12px rgba(184,148,58,0.6)'
+      : isFail
+      ? '0 0 40px rgba(107,18,18,0.9), 0 0 12px rgba(107,18,18,0.6)'
+      : '0 0 30px rgba(123,79,166,0.8)';
+    labelEl.textContent = isCrit ? 'Natural 20 — the gods smile' : isFail ? 'Natural 1 — they do not' : `d20 — you rolled a ${roll}`;
+    diceEl.classList.add('show');
+    labelEl.classList.add('show');
+    clearTimeout(diceTimeout);
+    diceTimeout = setTimeout(() => {
+      diceEl.classList.remove('show');
+      labelEl.classList.remove('show');
+    }, 3000);
+  });
 
   // FAQ accordion
   function toggleFaq(btn) {
