@@ -193,6 +193,7 @@
   /* CHILDREN */
   #children { background: var(--deep); }
   .children-grid { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+  .children-grid .child-card:last-child { grid-column: 1 / -1; justify-self: center; width: min(100%, 280px); }
   .child-card {
     border: 1px solid rgba(123,79,166,0.1);
     background: linear-gradient(160deg, rgba(13,6,22,0.97), rgba(6,4,11,0.99));
