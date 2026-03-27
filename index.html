@@ -7,18 +7,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blood: #6b1212;
-    --gold: #b8943a;
-    --gold-dim: #6a4f1e;
-    --purple: #7b4fa6;
-    --purple-mid: #5a3480;
-    --purple-dim: #3d2258;
-    --purple-glow: rgba(123,79,166,0.22);
-    --bone: #d8ccb4;
-    --ash: #8a7a66;
-    --ink: #06040b;
-    --shadow: #09070f;
-    --deep: #040309;
+    --blood: #9b1c1c;
+    --gold: #8a6a22;
+    --gold-dim: #4a3410;
+    --purple: #8b1a1a;
+    --purple-mid: #5c1010;
+    --purple-dim: #7a2a2a;
+    --purple-glow: rgba(139,26,26,0.22);
+    --bone: #d4c9b0;
+    --ash: #9a8c7a;
+    --ink: #030208;
+    --shadow: #060409;
+    --deep: #020106;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,30 +26,31 @@
 
   body {
     background-color: var(--ink);
+    background-image: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(80,8,8,0.25) 0%, transparent 70%);
     color: var(--bone);
     font-family: 'IM Fell English', serif;
     overflow-x: hidden;
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='3' fill='%237b4fa6'/%3E%3C/svg%3E") 10 10, auto;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='3' fill='%238b1a1a'/%3E%3C/svg%3E") 10 10, auto;
   }
 
   body::before {
     content: '';
     position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 9999; opacity: 0.5;
+    pointer-events: none; z-index: 1; opacity: 0.4;
   }
 
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2rem;
+    display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 5rem;
     padding: 1.2rem 2rem;
-    background: linear-gradient(to bottom, rgba(6,4,11,0.99), transparent);
-    border-bottom: 1px solid rgba(123,79,166,0.1);
+    background: linear-gradient(to bottom, rgba(12,3,3,0.99), transparent);
+    border-bottom: 1px solid rgba(160,30,30,0.1);
   }
   nav a {
     font-family: 'Cinzel', serif; font-size: 0.68rem;
-    letter-spacing: 0.25em; text-transform: uppercase;
+    letter-spacing: 0.45em; text-transform: uppercase;
     color: rgba(216,204,180,0.72); text-decoration: none; transition: color 0.3s; position: relative;
   }
   nav a::after {
@@ -62,7 +63,7 @@
 
   /* HAMBURGER */
   .nav-toggle {
-    display: none; background: none; border: 1px solid rgba(123,79,166,0.25); padding: 0.45rem 0.7rem;
+    display: none; background: none; border: 1px solid rgba(160,30,30,0.25); padding: 0.45rem 0.7rem;
     cursor: pointer; flex-direction: column; gap: 5px; position: absolute; right: 1.4rem; top: 50%; transform: translateY(-50%);
   }
   .nav-toggle span {
@@ -81,8 +82,8 @@
   @media (max-width: 780px) {
     nav {
       flex-direction: column; align-items: flex-start;
-      padding: 0; background: rgba(6,4,11,0.99);
-      border-bottom: 1px solid rgba(123,79,166,0.1);
+      padding: 0; background: rgba(12,3,3,0.99);
+      border-bottom: 1px solid rgba(160,30,30,0.1);
     }
     .nav-header {
       width: 100%; display: flex; justify-content: space-between; align-items: center;
@@ -92,7 +93,7 @@
     .nav-toggle { display: flex; position: static; transform: none; }
     .nav-links {
       display: none; flex-direction: column; width: 100%;
-      border-top: 1px solid rgba(123,79,166,0.08);
+      border-top: 1px solid rgba(160,30,30,0.08);
       padding: 0.6rem 0 1rem;
     }
     .nav-links.open { display: flex; }
@@ -100,7 +101,7 @@
       padding: 0.65rem 1.8rem; font-size: 0.7rem;
     }
     nav a::after { display: none; }
-    nav a:hover { background: rgba(123,79,166,0.06); color: var(--purple); }
+    nav a:hover { background: rgba(160,30,30,0.06); color: var(--purple); }
   }
 
   /* HERO */
@@ -112,10 +113,10 @@
   .hero-bg {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 55% 55% at 50% 38%, rgba(123,79,166,0.13) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 55% at 50% 38%, rgba(160,30,30,0.13) 0%, transparent 65%),
       radial-gradient(ellipse 35% 35% at 50% 38%, rgba(107,18,18,0.1) 0%, transparent 60%),
-      radial-gradient(ellipse 80% 50% at 50% 88%, rgba(6,4,11,1) 0%, transparent 100%),
-      linear-gradient(170deg, #06040b 0%, #0d0618 50%, #06040b 100%);
+      radial-gradient(ellipse 80% 50% at 50% 88%, rgba(12,3,3,1) 0%, transparent 100%),
+      linear-gradient(170deg, #0c0303 0%, #150404 50%, #0c0303 100%);
   }
   .embers { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
   .ember { position: absolute; border-radius: 50%; animation: float-up linear infinite; opacity: 0; }
@@ -144,7 +145,7 @@
   h1 {
     font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem, 6vw, 4.5rem);
     font-weight: 900; line-height: 1.05; color: var(--bone);
-    text-shadow: 0 0 90px rgba(123,79,166,0.45), 0 0 25px rgba(107,18,18,0.35), 0 2px 4px rgba(0,0,0,0.95);
+    text-shadow: 0 0 90px rgba(160,30,30,0.45), 0 0 25px rgba(107,18,18,0.35), 0 2px 4px rgba(0,0,0,0.95);
     animation: title-in 1.5s cubic-bezier(0.16,1,0.3,1) 0.3s both; position: relative; z-index: 1;
   }
   h1 span { color: var(--purple); }
@@ -163,26 +164,33 @@
   @keyframes fade-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes title-in { from { opacity: 0; transform: translateY(30px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
   @keyframes divider-breathe { 0%,100% { width:150px; opacity:0.7; } 50% { width:215px; opacity:1; } }
-  @keyframes glyph-pulse { 0%,100% { opacity:0.65; text-shadow:none; } 50% { opacity:1; text-shadow:0 0 18px rgba(123,79,166,0.75); } }
+  @keyframes glyph-pulse { 0%,100% { opacity:0.65; text-shadow:none; } 50% { opacity:1; text-shadow:0 0 18px rgba(160,30,30,0.75); } }
   @keyframes icon-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
-  @keyframes quote-glow { 0%,100% { border-left-color:var(--purple-dim); box-shadow:none; } 50% { border-left-color:rgba(123,79,166,0.55); box-shadow:-5px 0 18px rgba(123,79,166,0.1); } }
+  @keyframes quote-glow { 0%,100% { border-left-color:var(--purple-dim); box-shadow:none; } 50% { border-left-color:rgba(160,30,30,0.55); box-shadow:-5px 0 18px rgba(160,30,30,0.1); } }
   @keyframes shimmer-slide { from { left:-100%; } to { left:160%; } }
   @keyframes title-flicker { 0%,92%,96%,100% { opacity:1; } 93%,95% { opacity:0.35; } 94% { opacity:0.9; } }
 
   /* SECTIONS */
-  section { padding: 6rem 2rem; position: relative; }
-  .section-inner { max-width: 860px; margin: 0 auto; }
+  section { padding: 3.5rem 2rem; position: relative; }
+  .section-inner {
+    max-width: 1100px; margin: 0 auto; position: relative;
+    border-left: 1px solid rgba(130,20,20,0.18);
+    border-right: 1px solid rgba(130,20,20,0.18);
+    padding-left: 2.5rem; padding-right: 2.5rem;
+    box-shadow: -1px 0 18px rgba(130,20,20,0.06), 1px 0 18px rgba(130,20,20,0.06);
+  }
   .section-tag { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--purple-mid); display: block; margin-bottom: 0.8rem; }
-  h2 { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.4rem, 3.5vw, 2.1rem); color: var(--bone); margin-bottom: 0.5rem; text-shadow: 0 0 25px rgba(123,79,166,0.18); }
+  h2 { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.4rem, 3.5vw, 2.1rem); color: var(--bone); margin-bottom: 0.5rem; text-shadow: 0 0 25px rgba(160,30,30,0.18); }
 
   /* LORE */
-  #lore { background: var(--shadow); }
+  #primer { background: #130608; }
+  #lore { background: #1a0a0a; }
   .lore-text { font-size: 1.02rem; line-height: 2; color: var(--ash); margin-top: 2rem; }
   .lore-text p { margin-bottom: 1.5rem; }
   .lore-text p:first-child::first-letter {
     font-family: 'Cinzel Decorative', serif; font-size: 3.5rem; font-weight: 900;
     color: var(--purple-mid); float: left; line-height: 0.8; margin: 0.1em 0.12em 0 0;
-    text-shadow: 0 0 20px rgba(123,79,166,0.45);
+    text-shadow: 0 0 20px rgba(160,30,30,0.45);
   }
   .lore-border {
     border-left: 2px solid var(--purple-dim); padding-left: 1.5rem; margin: 2rem 0;
@@ -191,51 +199,56 @@
   }
 
   /* CHILDREN */
-  #children { background: var(--deep); }
-  .children-grid { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+  #children { background: #0f0506; }
+  .children-grid { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
   .children-grid .child-card:last-child { grid-column: 1 / -1; justify-self: center; width: min(100%, 280px); }
   .child-card {
-    border: 1px solid rgba(123,79,166,0.1);
-    background: linear-gradient(160deg, rgba(13,6,22,0.97), rgba(6,4,11,0.99));
+    border: 1px solid rgba(160,30,30,0.1);
+    background: linear-gradient(160deg, rgba(30,10,10,0.97), rgba(18,5,5,0.99));
     padding: 1.8rem 1.5rem 1.5rem; position: relative; cursor: pointer;
     transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s; overflow: hidden;
   }
   .child-card::before {
     content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-    background: linear-gradient(105deg, transparent, rgba(123,79,166,0.05) 50%, transparent);
+    background: linear-gradient(105deg, transparent, rgba(160,30,30,0.05) 50%, transparent);
     pointer-events: none;
   }
   .child-card:hover::before { animation: shimmer-slide 0.65s ease forwards; }
   .child-card:hover {
-    border-color: var(--card-accent, rgba(123,79,166,0.5));
-    box-shadow: 0 0 45px var(--card-shadow, rgba(123,79,166,0.12)), 0 8px 28px rgba(0,0,0,0.45);
+    border-color: var(--card-accent, rgba(160,30,30,0.5));
+    box-shadow: 0 0 45px var(--card-shadow, rgba(160,30,30,0.12)), 0 8px 28px rgba(0,0,0,0.45);
     transform: translateY(-4px);
   }
   .child-icon { font-size: 2rem; display: block; margin-bottom: 1rem; animation: icon-float 4s ease-in-out infinite; }
   .child-name { font-family: 'Cinzel', serif; font-size: 0.93rem; color: var(--bone); margin-bottom: 0.2rem; letter-spacing: 0.05em; }
-  .child-theme { font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--card-accent, var(--purple-dim)); margin-bottom: 0.85rem; display: block; }
+  .child-theme { font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--card-accent, #c47a7a); margin-bottom: 0.85rem; display: block; opacity: 0.85; }
   .child-tagline { font-style: italic; font-size: 0.83rem; color: var(--ash); line-height: 1.6; }
   .child-status { position: absolute; top: 1rem; right: 1rem; font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.2rem 0.5rem; border: 1px solid; }
   .status-loyal   { border-color: rgba(184,148,58,0.3); color: var(--gold-dim); }
   .status-corrupted { border-color: rgba(107,18,18,0.65); color: var(--blood); }
-  .status-unknown { border-color: rgba(123,79,166,0.3); color: var(--purple-mid); }
+  .status-unknown { border-color: rgba(160,30,30,0.3); color: var(--purple-mid); }
+
+  #houserules { background: #1a0a0a; }
+  #dm { background: #0f0506; }
+  #faq { background: #1a0a0a; }
+  #join { background: #0f0506; }
 
   /* child modal */
-  .child-modal-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(123,79,166,0.12); }
+  .child-modal-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(160,30,30,0.12); }
   .child-modal-icon { font-size: 2.5rem; line-height: 1; }
   .child-modal-meta { flex: 1; }
   .child-modal-meta h3 { font-family: 'Cinzel Decorative', serif; font-size: 1.05rem; color: var(--bone); margin-bottom: 0.25rem; }
   .child-modal-meta .theme-tag { font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ash); }
   .child-modal-body p { font-style: italic; color: var(--ash); line-height: 1.9; font-size: 0.92rem; margin-bottom: 1rem; }
   .trait-row { display: flex; gap: 0.45rem; flex-wrap: wrap; margin-top: 1rem; }
-  .trait-pill { font-family: 'Cinzel', serif; font-size: 0.47rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.22rem 0.6rem; border: 1px solid rgba(123,79,166,0.18); color: var(--purple-mid); }
+  .trait-pill { font-family: 'Cinzel', serif; font-size: 0.47rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.22rem 0.6rem; border: 1px solid rgba(160,30,30,0.18); color: var(--purple-mid); }
 
   /* RECAPS */
   #recaps { background: var(--shadow); }
   .session-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
   .session-card {
-    border: 1px solid rgba(123,79,166,0.1);
-    background: linear-gradient(135deg, rgba(13,6,22,0.85), rgba(6,4,11,0.92));
+    border: 1px solid rgba(160,30,30,0.1);
+    background: linear-gradient(135deg, rgba(22,4,4,0.85), rgba(12,3,3,0.92));
     padding: 1.5rem 1.8rem; position: relative; overflow: hidden;
     transition: border-color 0.3s, box-shadow 0.3s; cursor: pointer;
   }
@@ -244,7 +257,7 @@
     background: linear-gradient(to bottom, var(--blood), var(--purple));
     transform: scaleY(0); transition: transform 0.3s; transform-origin: top;
   }
-  .session-card:hover { border-color: rgba(123,79,166,0.28); box-shadow: 0 0 22px rgba(123,79,166,0.05); }
+  .session-card:hover { border-color: rgba(160,30,30,0.28); box-shadow: 0 0 22px rgba(160,30,30,0.05); }
   .session-card:hover::before { transform: scaleY(1); }
   .session-num { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.3em; color: var(--purple-dim); text-transform: uppercase; }
   .session-title { font-family: 'Cinzel', serif; font-size: 0.97rem; color: var(--bone); margin: 0.3rem 0 0.6rem; }
@@ -254,25 +267,25 @@
   /* MAPS */
   #maps { background: var(--deep); }
   .maps-grid { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
-  .map-card { position: relative; aspect-ratio: 4/3; overflow: hidden; border: 1px solid rgba(123,79,166,0.1); cursor: pointer; transition: border-color 0.3s; }
-  .map-card:hover { border-color: rgba(123,79,166,0.38); }
+  .map-card { position: relative; aspect-ratio: 4/3; overflow: hidden; border: 1px solid rgba(160,30,30,0.1); cursor: pointer; transition: border-color 0.3s; }
+  .map-card:hover { border-color: rgba(160,30,30,0.38); }
   .map-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.8rem; background: linear-gradient(135deg, #08051a, #0d0820); position: relative; overflow: hidden; }
   .map-placeholder::before {
     content: ''; position: absolute; inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(123,79,166,0.025) 30px, rgba(123,79,166,0.025) 31px),
-                repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(123,79,166,0.025) 30px, rgba(123,79,166,0.025) 31px);
+    background: repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(160,30,30,0.025) 30px, rgba(160,30,30,0.025) 31px),
+                repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(160,30,30,0.025) 30px, rgba(160,30,30,0.025) 31px);
   }
   .map-icon { font-size: 2rem; opacity: 0.3; }
   .map-label { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.18em; color: var(--purple-dim); text-transform: uppercase; text-align: center; padding: 0 1rem; }
-  .map-hover-text { position: absolute; inset: 0; background: rgba(6,4,11,0.88); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--purple); text-transform: uppercase; opacity: 0; transition: opacity 0.3s; }
+  .map-hover-text { position: absolute; inset: 0; background: rgba(12,3,3,0.88); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--purple); text-transform: uppercase; opacity: 0; transition: opacity 0.3s; }
   .map-card:hover .map-hover-text { opacity: 1; }
-  .map-upload-card { border: 1px dashed rgba(123,79,166,0.18); background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; aspect-ratio: 4/3; cursor: pointer; transition: all 0.3s; }
-  .map-upload-card:hover { border-color: var(--purple); background: rgba(123,79,166,0.03); }
+  .map-upload-card { border: 1px dashed rgba(160,30,30,0.18); background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; aspect-ratio: 4/3; cursor: pointer; transition: all 0.3s; }
+  .map-upload-card:hover { border-color: var(--purple); background: rgba(160,30,30,0.03); }
   .map-upload-card span:first-child { font-size: 1.5rem; opacity: 0.22; }
   .map-upload-card .upload-label { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple-dim); }
 
   /* FOOTER */
-  footer { border-top: 1px solid rgba(123,79,166,0.08); padding: 2.5rem 2rem; text-align: center; }
+  footer { border-top: 1px solid rgba(160,30,30,0.08); padding: 2.5rem 2rem; text-align: center; }
   footer .footer-title { font-family: 'Cinzel Decorative', serif; font-size: 0.75rem; color: var(--purple-dim); letter-spacing: 0.15em; margin-bottom: 0.5rem; animation: title-flicker 12s ease-in-out infinite; }
   footer p { font-size: 0.75rem; color: rgba(138,122,102,0.3); font-style: italic; }
 
@@ -282,14 +295,14 @@
   .tone-tag {
     font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.25em;
     text-transform: uppercase; padding: 0.3rem 0.75rem;
-    border: 1px solid rgba(123,79,166,0.28); color: var(--purple-mid);
-    background: rgba(123,79,166,0.04);
+    border: 1px solid rgba(180,60,60,0.5); color: #c47a7a;
+    background: rgba(160,30,30,0.08);
   }
   .primer-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 0.5rem; }
   @media (max-width: 640px) { .primer-blocks { grid-template-columns: 1fr; } }
   .primer-block {
-    border: 1px solid rgba(123,79,166,0.1);
-    background: linear-gradient(160deg, rgba(13,6,22,0.9), rgba(6,4,11,0.97));
+    border: 1px solid rgba(160,30,30,0.1);
+    background: linear-gradient(160deg, rgba(22,4,4,0.9), rgba(12,3,3,0.97));
     padding: 1.6rem 1.5rem; position: relative; overflow: hidden;
     transition: border-color 0.4s, box-shadow 0.4s;
   }
@@ -312,7 +325,7 @@
   /* PARTY */
   #party { background: var(--shadow); }
   .party-empty {
-    grid-column: 1 / -1; border: 1px dashed rgba(123,79,166,0.14);
+    grid-column: 1 / -1; border: 1px dashed rgba(160,30,30,0.14);
     padding: 2rem; text-align: center;
     font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em;
     text-transform: uppercase; color: var(--purple-dim);
@@ -320,7 +333,7 @@
 
   /* RUNE BORDER */
   .rune-border { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; }
-  .rune-border .line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(123,79,166,0.22), transparent); }
+  .rune-border .line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(160,30,30,0.22), transparent); }
   .rune-border .glyph { font-size: 1.1rem; color: var(--purple-dim); opacity: 0.65; animation: glyph-pulse 3s ease-in-out infinite; }
 
   /* REVEAL */
@@ -330,7 +343,7 @@
   /* MODAL */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 2rem; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
   .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal { max-width: 600px; width: 100%; background: var(--shadow); border: 1px solid rgba(123,79,166,0.18); padding: 2.5rem; position: relative; transform: translateY(20px); transition: transform 0.3s; max-height: 85vh; overflow-y: auto; }
+  .modal { max-width: 600px; width: 100%; background: var(--shadow); border: 1px solid rgba(160,30,30,0.18); padding: 2.5rem; position: relative; transform: translateY(20px); transition: transform 0.3s; max-height: 85vh; overflow-y: auto; }
   .modal-overlay.open .modal { transform: translateY(0); }
   .modal-close { position: absolute; top: 1rem; right: 1.2rem; background: none; border: none; color: var(--ash); font-size: 1.2rem; cursor: pointer; font-family: 'Cinzel', serif; transition: color 0.2s; }
   .modal-close:hover { color: var(--purple); }
@@ -339,8 +352,8 @@
   #faq { background: var(--deep); }
   .faq-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
   .faq-item {
-    border: 1px solid rgba(123,79,166,0.1);
-    background: linear-gradient(160deg, rgba(13,6,22,0.9), rgba(6,4,11,0.97));
+    border: 1px solid rgba(160,30,30,0.1);
+    background: linear-gradient(160deg, rgba(22,4,4,0.9), rgba(12,3,3,0.97));
     overflow: hidden; position: relative;
   }
   .faq-question {
@@ -365,7 +378,7 @@
     font-style: italic; color: var(--ash); font-size: 0.88rem; line-height: 1.85;
   }
   .faq-item.open .faq-answer { max-height: 300px; padding: 0 1.6rem 1.4rem; }
-  .faq-item.open { border-color: rgba(123,79,166,0.22); }
+  .faq-item.open { border-color: rgba(160,30,30,0.22); }
 
   /* WANT TO PLAY */
   #join { background: var(--shadow); }
@@ -381,26 +394,26 @@
   .join-btn {
     font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.28em;
     text-transform: uppercase; padding: 0.75rem 1.8rem;
-    border: 1px solid rgba(123,79,166,0.35); color: var(--bone);
-    background: rgba(123,79,166,0.06); text-decoration: none;
+    border: 1px solid rgba(160,30,30,0.35); color: var(--bone);
+    background: rgba(160,30,30,0.06); text-decoration: none;
     transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
     position: relative; overflow: hidden;
   }
   .join-btn::before {
     content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-    background: linear-gradient(105deg, transparent, rgba(123,79,166,0.1) 50%, transparent);
+    background: linear-gradient(105deg, transparent, rgba(160,30,30,0.1) 50%, transparent);
   }
-  .join-btn:hover { background: rgba(123,79,166,0.12); border-color: var(--purple); box-shadow: 0 0 20px rgba(123,79,166,0.12); }
+  .join-btn:hover { background: rgba(160,30,30,0.12); border-color: var(--purple); box-shadow: 0 0 20px rgba(160,30,30,0.12); }
   .join-btn:hover::before { animation: shimmer-slide 0.6s ease forwards; }
   .join-spots {
     font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.28em;
     text-transform: uppercase; color: var(--purple-mid);
-    border: 1px solid rgba(123,79,166,0.15); padding: 0.45rem 1rem;
+    border: 1px solid rgba(160,30,30,0.15); padding: 0.45rem 1rem;
   }
   .join-checklist {
     text-align: left; width: 100%; max-width: 560px;
-    border: 1px solid rgba(123,79,166,0.12);
-    background: linear-gradient(160deg, rgba(13,6,22,0.9), rgba(6,4,11,0.97));
+    border: 1px solid rgba(160,30,30,0.12);
+    background: linear-gradient(160deg, rgba(22,4,4,0.9), rgba(12,3,3,0.97));
     padding: 1.8rem 2.2rem;
   }
   .join-checklist-title {
@@ -421,12 +434,12 @@
   #houserules { background: var(--deep); }
   .rules-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
   .rule-card {
-    border: 1px solid rgba(123,79,166,0.1);
-    background: linear-gradient(160deg, rgba(13,6,22,0.9), rgba(6,4,11,0.97));
+    border: 1px solid rgba(160,30,30,0.1);
+    background: linear-gradient(160deg, rgba(22,4,4,0.9), rgba(12,3,3,0.97));
     padding: 1.4rem 1.8rem; display: flex; gap: 1.2rem; align-items: flex-start;
     transition: border-color 0.3s;
   }
-  .rule-card:hover { border-color: rgba(123,79,166,0.25); }
+  .rule-card:hover { border-color: rgba(160,30,30,0.25); }
   .rule-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
   .rule-body {}
   .rule-title {
@@ -444,7 +457,7 @@
   }
   #dice-result {
     font-family: 'Cinzel Decorative', serif; font-size: 2.2rem; font-weight: 900;
-    color: var(--bone); text-shadow: 0 0 30px rgba(123,79,166,0.8), 0 0 8px rgba(107,18,18,0.6);
+    color: var(--bone); text-shadow: 0 0 30px rgba(160,30,30,0.8), 0 0 8px rgba(107,18,18,0.6);
     opacity: 0; transform: translateY(10px) scale(0.8);
     transition: opacity 0.35s ease, transform 0.35s ease;
     pointer-events: none; line-height: 1;
@@ -626,7 +639,7 @@
     <p class="reveal" style="font-style:italic;color:var(--ash);margin-top:0.4rem;font-size:0.9rem;">Each carries a fragment of the Nameless God. Click a card to learn more.</p>
     <div class="children-grid reveal">
 
-      <div class="child-card" style="--card-accent:rgba(210,200,165,0.42);--card-shadow:rgba(210,200,165,0.04);"
+      <div class="child-card" style="--card-accent:#c8b87a;--card-shadow:rgba(210,200,165,0.06);"
         onclick="openChildModal('⭐','Seraphel','Stars &amp; Light','Loyal',
           'Seraphel is the eldest, and she carries herself like someone who has already seen how things end. She is calm in the way that the sky is calm — vast, untouchable, and indifferent to what burns below it. She does not waste words, and she does not offer comfort. What she offers is clarity, which most people find worse.',
           'She was the first to sense what lives inside all seven of them. She has not told the others what she suspects. She is not sure they are ready. She is not sure she is, either.',
@@ -637,7 +650,7 @@
         <div class="child-tagline">"She already knows how this ends. She has chosen not to say."</div>
       </div>
 
-      <div class="child-card" style="--card-accent:rgba(175,50,70,0.42);--card-shadow:rgba(175,50,70,0.05);"
+      <div class="child-card" style="--card-accent:#c47a7a;--card-shadow:rgba(175,50,70,0.07);"
         onclick="openChildModal('🌹','Maren','Roses &amp; Thorns','Loyal',
           'Maren is warm in the way that a fireplace is warm — inviting, yes, but step too close and you get burned. She loves deeply and grieves harder, and she has never once learned how to let something go. She is the most openly emotional of the seven, which people mistake for weakness until it is much too late.',
           'The figure in the hat came to her first. She refused it. That refusal cost her in quiet ways she has never fully explained — but she has not wavered. Whatever she feels about what happened to Varethos, she carries it without putting it down.',
@@ -648,7 +661,7 @@
         <div class="child-tagline">"She loves like a wound that never quite closes."</div>
       </div>
 
-      <div class="child-card" style="--card-accent:rgba(85,125,205,0.42);--card-shadow:rgba(85,125,205,0.05);"
+      <div class="child-card" style="--card-accent:#7a9ec4;--card-shadow:rgba(85,125,205,0.07);"
         onclick="openChildModal('⚡','Kael','Storm &amp; Thunder','Corrupted',
           'Kael was never quiet. Even as a child he filled every room he entered — loud, restless, furious at things he could not name. He loved Varethos fiercely and openly, the way only someone terrified of being unloved truly can. When the figure showed him visions of a father who had engineered that love — who had built Kael to need him — something snapped like a bone.',
           'He did not become cruel slowly. He became cruel all at once, like a storm that has been building offshore finally making landfall. His rage is genuine. His grief is genuine. He is not pretending. He truly believes he was wronged, and he truly believes the world deserves what he is bringing to it.',
@@ -659,7 +672,7 @@
         <div class="child-tagline">"He does not grieve quietly."</div>
       </div>
 
-      <div class="child-card" style="--card-accent:rgba(125,115,105,0.42);--card-shadow:rgba(125,115,105,0.04);"
+      <div class="child-card" style="--card-accent:#a09080;--card-shadow:rgba(125,115,105,0.06);"
         onclick="openChildModal('🗡️','Voryn','Iron &amp; Scars','Loyal',
           'Voryn does not talk about the things he has done. He does not talk about much. He was the one Varethos sent when diplomacy had already failed — the last argument, the final word. He has scars on his hands he has never explained and a way of standing in a room that makes people instinctively move out of his path.',
           'He is not a good man. He knows this and does not pretend otherwise. But he is a loyal one, and in a world this broken, that distinction might be all that is left. He mourns Varethos in the only language he knows: work.',
@@ -670,7 +683,7 @@
         <div class="child-tagline">"He does not explain himself. He does not need to."</div>
       </div>
 
-      <div class="child-card" style="--card-accent:rgba(145,105,45,0.42);--card-shadow:rgba(145,105,45,0.05);"
+      <div class="child-card" style="--card-accent:#c4943a;--card-shadow:rgba(145,105,45,0.07);"
         onclick="openChildModal('⚖️','Thessaly','Scales &amp; Judgment','Corrupted',
           'Thessaly was always the one who was right. Not cruel about it — just precise, with an accuracy that made other people feel quietly ashamed of themselves. She saw the world in weights and debts and balances, and Varethos trusted her above all others to make the decisions that could not be made lightly.',
           'The figure did not break Thessaly. It only needed to show her the ledger — the true one. What Varethos had taken from the Nameless God without consent. What he had done to the seven of them without asking. Thessaly looked at the numbers and found them unacceptable. She is not driven by rage or grief. She is driven by the cold certainty that someone has to correct this, and she is the only one qualified.',
@@ -681,7 +694,7 @@
         <div class="child-tagline">"She has already decided. She is simply waiting for you to catch up."</div>
       </div>
 
-      <div class="child-card" style="--card-accent:rgba(105,65,145,0.48);--card-shadow:rgba(105,65,145,0.06);"
+      <div class="child-card" style="--card-accent:#a07ac4;--card-shadow:rgba(105,65,145,0.08);"
         onclick="openChildModal('🕸️','Vesh','Spiders &amp; Silk','Corrupted',
           'Vesh is charming. Genuinely, effortlessly charming — the kind of person who makes you feel, in the moment of speaking with them, that you are the only person in the world worth speaking to. It is a gift. It is also a weapon, and Vesh has always known the difference between the two.',
           'The figure in the hat did not corrupt Vesh so much as give Vesh permission. The ambition was always there. The hunger was always there. What was offered was not a reason to act — it was simply the removal of the last reason not to. Vesh is not angry at Varethos. Vesh is not grieving. Vesh saw an opportunity in the chaos and took it, and has been taking everything since.',
@@ -692,7 +705,7 @@
         <div class="child-tagline">"You will like them immediately. That is the problem."</div>
       </div>
 
-      <div class="child-card" style="--card-accent:rgba(95,80,125,0.42);--card-shadow:rgba(95,80,125,0.04);"
+      <div class="child-card" style="--card-accent:#8a7aaa;--card-shadow:rgba(95,80,125,0.06);"
         onclick="openChildModal('🌑','Nael','The Eclipse','Unknown',
           'Nael is the youngest, and the most quietly devastating. They exist in the space between things — between light and dark, between loyal and lost, between the person they were before and the person something is slowly convincing them they could become. They have not chosen yet. Whatever wears the hat is not rushing them.',
           'Nael loved Varethos in a way none of the others quite did — not with awe or need, but with a simple, undefended tenderness that has nowhere to go now that he is gone. That love did not become anger. It became silence. And the silence has been getting louder. Whoever Nael becomes when they finally choose a side will change everything.',
@@ -877,7 +890,7 @@
     const size = (1 + Math.random() * 2) + 'px';
     e.style.width = size; e.style.height = size;
     const r = Math.random();
-    e.style.background = r < 0.45 ? '#7b4fa6' : r < 0.7 ? '#5a3480' : r < 0.88 ? '#3d2258' : '#6b1212';
+    e.style.background = r < 0.45 ? '#8b1a1a' : r < 0.7 ? '#5c1010' : r < 0.88 ? '#3a0808' : '#9b1c1c';
     container.appendChild(e);
   }
 
@@ -948,7 +961,7 @@
       ? '0 0 40px rgba(184,148,58,0.9), 0 0 12px rgba(184,148,58,0.6)'
       : isFail
       ? '0 0 40px rgba(107,18,18,0.9), 0 0 12px rgba(107,18,18,0.6)'
-      : '0 0 30px rgba(123,79,166,0.8)';
+      : '0 0 30px rgba(160,30,30,0.8)';
     labelEl.textContent = isCrit ? 'Natural 20 — the gods smile' : isFail ? 'Natural 1 — they do not' : `d20 — you rolled a ${roll}`;
     diceEl.classList.add('show');
     labelEl.classList.add('show');
